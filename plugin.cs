@@ -18,6 +18,7 @@ namespace Ultrapit
     [BepInPlugin("DarkFountains.draghtnim.ultrakill", "DarkFountains", "1.0")]
     public class Plugin : BaseUnityPlugin
     {
+        private Material badfix;
         private PluginConfigurator config;
         private AssetBundle terminal;
         public static bool IsCustomLevel = false;
@@ -43,6 +44,7 @@ namespace Ultrapit
         ///*
         public static void ReplaceShader(Material mat, Shader shader)
         {
+
             if ((UnityEngine.Object)(object)mat == (UnityEngine.Object)null || (UnityEngine.Object)(object)mat.shader == (UnityEngine.Object)null)
             {
                 return;
@@ -71,10 +73,15 @@ namespace Ultrapit
                 mat.renderQueue = renderQueue;
             }
         }
+        public static Type Fetch<Type>(string name)
+        {
+            //IL_0001: Unknown result type (might be due to invalid IL or missing references)
+            //IL_0006: Unknown result type (might be due to invalid IL or missing references)
+            return Addressables.LoadAssetAsync<Type>((object)name).WaitForCompletion();
+        }
 
         public static void ReplaceAssets()
         {
-
             List<Material> list = new List<Material>();
             Dictionary<string, AudioMixer> dictionary = new Dictionary<string, AudioMixer>();
             dictionary["AllAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"AllAudio").WaitForCompletion();
@@ -83,7 +90,7 @@ namespace Ultrapit
             dictionary["MusicAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"MusicAudio").WaitForCompletion();
             dictionary["UnfreezeableAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"UnfreezeableAudio").WaitForCompletion();
             GameObject[] array = PitBundle.LoadAllAssets<GameObject>();
-            //Material[] sharedMaterials;
+            Material[] sharedMaterials;
             foreach (GameObject val in array)
             {
                 if (val.GetComponentsInChildren<AudioSource>(true) != null)
@@ -97,7 +104,9 @@ namespace Ultrapit
                         }
                     }
                 }
-                /*if (val.GetComponentsInChildren<Renderer>(true) != null)
+
+                //study this
+                if (val.GetComponentsInChildren<Renderer>(true) != null)
                 {
                     Renderer[] componentsInChildren2 = val.GetComponentsInChildren<Renderer>(true);
                     foreach (Renderer val3 in componentsInChildren2)
@@ -147,12 +156,11 @@ namespace Ultrapit
                     list.Add(val7);
                     ReplaceShader(val7, MainShader);
                 }
-            }*/
-
-
             }
+
+
+            
         }
-        //*/
 
         public static GameObject FindObjectEvenIfDisabled(string rootName, string objPath = null, int childNum = 0, bool useChildNum = false)
         {
@@ -201,6 +209,11 @@ namespace Ultrapit
 
         private void Awake()
         {
+
+            MainShader = Fetch<Shader>("Assets/Shaders/MasterShader/ULTRAKILL-Standard.shader");
+            badfix = Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
+
+
             string assemblyLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
 
@@ -289,6 +302,17 @@ namespace Ultrapit
 
                 case "Level 1-1":
 
+                    if ((fun < 4 || OverrideFun == "Always_on") && OverrideFun != "Off")
+                    {
+
+                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
+                        Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
+
+
+                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                    }
+
+
                     FindObjectEvenIfDisabled("1 - First Field", "1 Stuff/Fountain").gameObject.SetActive(false);
 
                     Fountain = UnityEngine.Object.Instantiate(prefabs[1]);
@@ -313,10 +337,13 @@ namespace Ultrapit
                     break;
                 case "Level 1-S":
 
+
+                    
                     FindObjectEvenIfDisabled("5 - Finale", "FinalRoomSecretExit").gameObject.SetActive(false);
                     Fountain = UnityEngine.Object.Instantiate(prefabs[2]);
                     FindObjectEvenIfDisabled("5 - Finale", "InteractiveScreenPuzzle5x5 (2)/Canvas/Background").GetComponent<PuzzleController>().toActivate[0] = FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "ActivateLimboDoor").gameObject;
 
+                    FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "WaterReplace").gameObject.GetComponent<MeshRenderer>().material = badfix;
 
                     break;
 

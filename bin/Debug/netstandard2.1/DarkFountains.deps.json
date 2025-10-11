@@ -16,6 +16,7 @@
           "PluginConfigurator": "1.10.2.0",
           "PluginConfiguratorComponents": "1.0.0.0",
           "Unity.Addressables": "0.0.0.0",
+          "Unity.Collections": "0.0.0.0",
           "Unity.ResourceManager": "0.0.0.0",
           "Unity.TextMeshPro": "0.0.0.0",
           "UnityEngine.AssetBundleModule": "0.0.0.0",
@@ -80,6 +81,14 @@
       "Unity.Addressables/0.0.0.0": {
         "runtime": {
           "Unity.Addressables.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Unity.Collections/0.0.0.0": {
+        "runtime": {
+          "Unity.Collections.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -189,6 +198,14 @@
           }
         }
       },
+      "Unity.Burst/0.0.0.0": {
+        "runtime": {
+          "Unity.Burst.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.AIModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AIModule.dll": {
@@ -293,6 +310,22 @@
           }
         }
       },
+      "UnityEngine.PropertiesModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.PropertiesModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Unity.Collections.LowLevel.ILSupport/0.0.0.0": {
+        "runtime": {
+          "Unity.Collections.LowLevel.ILSupport.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.TextCoreFontEngineModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.TextCoreFontEngineModule.dll": {
@@ -320,14 +353,6 @@
       "UnityEngine.ContentLoadModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.ContentLoadModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.PropertiesModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.PropertiesModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -620,6 +645,14 @@
             "fileVersion": "0.0.0.0"
           }
         }
+      },
+      "Unity.Burst.Unsafe/4.0.5.0": {
+        "runtime": {
+          "Unity.Burst.Unsafe.dll": {
+            "assemblyVersion": "4.0.5.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
       }
     }
   },
@@ -660,6 +693,11 @@
       "sha512": ""
     },
     "Unity.Addressables/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.Collections/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -729,6 +767,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Unity.Burst/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.AIModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -794,6 +837,16 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.PropertiesModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.Collections.LowLevel.ILSupport/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.TextCoreFontEngineModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -810,11 +863,6 @@
       "sha512": ""
     },
     "UnityEngine.ContentLoadModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.PropertiesModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -995,6 +1043,11 @@
       "sha512": ""
     },
     "UnityEngine.InputModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.Burst.Unsafe/4.0.5.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
