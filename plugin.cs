@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BepInEx;
+using BepInEx.Bootstrap;
 using HarmonyLib;
 using PluginConfig.API;
 using PluginConfig.API.Fields;
@@ -20,185 +21,19 @@ namespace Ultrapit
     {
         private Material badfix;
         private PluginConfigurator config;
-        private AssetBundle terminal;
         public static bool IsCustomLevel = false;
-        private UnityEngine.SceneManagement.Scene scene;
-        private GameObject pitobj;
-        private GameObject newpitobj;
-        AssetBundle bundlepit;
+
         private static Plugin _instance;
-        private static Shader MainShader;
         bool epmodeinternal = false;
         string OverrideFun;
         static string assemblyLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
-        static AssetBundle PitBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation, "DATA_PACKAGE.resource"));
-        static GameObject[] prefabs = PitBundle.LoadAllAssets<GameObject>();
-
+        public static AssetBundle PitBundle = AssetBundle.LoadFromFile(Path.Combine(assemblyLocation, "DATA_PACKAGE.resource"));
+        public static GameObject[] prefabs = PitBundle.LoadAllAssets<GameObject>();
         public static Plugin Instance => _instance;
 
 
 
-        //Plonk code
-
-        ///*
-        public static void ReplaceShader(Material mat, Shader shader)
-        {
-
-            if ((UnityEngine.Object)(object)mat == (UnityEngine.Object)null || (UnityEngine.Object)(object)mat.shader == (UnityEngine.Object)null)
-            {
-                return;
-            }
-            int renderQueue = mat.renderQueue;
-            Shader shader2 = mat.shader;
-            if ((UnityEngine.Object)(object)Shader.Find(((UnityEngine.Object)shader2).name) != (UnityEngine.Object)null)
-            {
-                if (((UnityEngine.Object)mat.shader).name != "Standard")
-                {
-                    mat.shader = Shader.Find(((UnityEngine.Object)shader2).name);
-                }
-                else
-                {
-                    mat.shader = shader;
-                }
-                mat.renderQueue = renderQueue;
-            }
-            else if (((UnityEngine.Object)shader2).name == ((UnityEngine.Object)shader).name)
-            {
-                mat.shader = shader;
-                mat.renderQueue = renderQueue;
-            }
-            else
-            {
-                mat.renderQueue = renderQueue;
-            }
-        }
-        public static Type Fetch<Type>(string name)
-        {
-            //IL_0001: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0006: Unknown result type (might be due to invalid IL or missing references)
-            return Addressables.LoadAssetAsync<Type>((object)name).WaitForCompletion();
-        }
-
-        public static void ReplaceAssets()
-        {
-            List<Material> list = new List<Material>();
-            Dictionary<string, AudioMixer> dictionary = new Dictionary<string, AudioMixer>();
-            dictionary["AllAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"AllAudio").WaitForCompletion();
-            dictionary["DoorAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"DoorAudio").WaitForCompletion();
-            dictionary["GoreAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"GoreAudio").WaitForCompletion();
-            dictionary["MusicAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"MusicAudio").WaitForCompletion();
-            dictionary["UnfreezeableAudio"] = Addressables.LoadAssetAsync<AudioMixer>((object)"UnfreezeableAudio").WaitForCompletion();
-            GameObject[] array = PitBundle.LoadAllAssets<GameObject>();
-            Material[] sharedMaterials;
-            foreach (GameObject val in array)
-            {
-                if (val.GetComponentsInChildren<AudioSource>(true) != null)
-                {
-                    AudioSource[] componentsInChildren = val.GetComponentsInChildren<AudioSource>(true);
-                    foreach (AudioSource val2 in componentsInChildren)
-                    {
-                        if ((UnityEngine.Object)(object)val2.outputAudioMixerGroup != (UnityEngine.Object)null && dictionary.TryGetValue(((UnityEngine.Object)val2.outputAudioMixerGroup.audioMixer).name, out var value))
-                        {
-                            val2.outputAudioMixerGroup.audioMixer.outputAudioMixerGroup = value.FindMatchingGroups("Master").FirstOrDefault();
-                        }
-                    }
-                }
-
-                //study this
-                if (val.GetComponentsInChildren<Renderer>(true) != null)
-                {
-                    Renderer[] componentsInChildren2 = val.GetComponentsInChildren<Renderer>(true);
-                    foreach (Renderer val3 in componentsInChildren2)
-                    {
-                        if ((UnityEngine.Object)(object)val3.sharedMaterial != (UnityEngine.Object)null)
-                        {
-                            ReplaceShader(val3.sharedMaterial, MainShader);
-                        }
-                        if (val3.sharedMaterials != null && val3.sharedMaterials.Length != 0)
-                        {
-                            sharedMaterials = val3.sharedMaterials;
-                            foreach (Material val4 in sharedMaterials)
-                            {
-                                list.Add(val4);
-                                ReplaceShader(val4, MainShader);
-                            }
-                        }
-                    }
-                }
-                if (val.GetComponentsInChildren<ParticleSystemRenderer>(true) == null)
-                {
-                    continue;
-                }
-                ParticleSystemRenderer[] componentsInChildren3 = val.GetComponentsInChildren<ParticleSystemRenderer>(true);
-                foreach (ParticleSystemRenderer val5 in componentsInChildren3)
-                {
-                    if ((UnityEngine.Object)(object)((Renderer)val5).sharedMaterial != (UnityEngine.Object)null)
-                    {
-                        ReplaceShader(((Renderer)val5).sharedMaterial, MainShader);
-                    }
-                    if (((Renderer)val5).sharedMaterials != null && ((Renderer)val5).sharedMaterials.Length != 0)
-                    {
-                        sharedMaterials = ((Renderer)val5).sharedMaterials;
-                        foreach (Material val6 in sharedMaterials)
-                        {
-                            list.Add(val6);
-                            ReplaceShader(val6, MainShader);
-                        }
-                    }
-                }
-            }
-            sharedMaterials = PitBundle.LoadAllAssets<Material>();
-            foreach (Material val7 in sharedMaterials)
-            {
-                if (!list.Contains(val7))
-                {
-                    list.Add(val7);
-                    ReplaceShader(val7, MainShader);
-                }
-            }
-
-
-            
-        }
-
-        public static GameObject FindObjectEvenIfDisabled(string rootName, string objPath = null, int childNum = 0, bool useChildNum = false)
-        {
-            GameObject obj = null;
-            GameObject[] objs = UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects();
-            bool gotRoot = false;
-            foreach (GameObject obj1 in objs)
-            {
-                if (obj1.name == rootName)
-                {
-                    obj = obj1;
-                    gotRoot = true;
-                }
-            }
-            if (!gotRoot)
-                goto returnObject;
-            else
-            {
-                GameObject obj2 = obj;
-                if (objPath != null)
-                {
-                    obj2 = obj.transform.Find(objPath).gameObject;
-                    if (!useChildNum)
-                    {
-                        obj = obj2;
-                    }
-                }
-                if (useChildNum)
-                {
-                    GameObject obj3 = obj2.transform.GetChild(childNum).gameObject;
-                    obj = obj3;
-                }
-            }
-        returnObject:
-            return obj;
-        }
-
-        //end of plonk code
 
         enum FunEnum
         {
@@ -209,10 +44,10 @@ namespace Ultrapit
 
         private void Awake()
         {
+            
+            badfix = GenericHelper.Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
 
-            MainShader = Fetch<Shader>("Assets/Shaders/MasterShader/ULTRAKILL-Standard.shader");
-            badfix = Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
-
+            GenericHelper.DictonaryFill();
 
             string assemblyLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -265,13 +100,13 @@ namespace Ultrapit
 
             int fun = (int)UnityEngine.Random.Range(1, 10);
             GameObject[] prefabs = PitBundle.LoadAllAssets<GameObject>();
-            GameObject Fountain = prefabs[1];
+            GameObject Fountain = GenericHelper.FetchAsset("1 - Darker_Fountain");
             GameObject cache;
             GameObject Funobj;
 
             if (SceneHelper.CurrentScene != "Main Menu" || SceneHelper.CurrentScene != "Bootstrap" || SceneHelper.CurrentScene != "Intro")
             {
-                ReplaceAssets();
+                GenericHelper.ReplaceAssets();
             }
             Logger.LogWarning(epmodeinternal);
 
@@ -282,19 +117,19 @@ namespace Ultrapit
 
                 case "Level 0-2":
 
-                    FindObjectEvenIfDisabled("5B - Secret Arena", "5B Nonstuff/Pit (2)").transform.position = new UnityEngine.Vector3(0, 0, 798);
-                    FindObjectEvenIfDisabled("5B - Secret Arena", "5B Nonstuff/Pit (3)").transform.position = new UnityEngine.Vector3(0, 0, 778);
+                    GenericHelper.FindObjectEvenIfDisabled("5B - Secret Arena", "5B Nonstuff/Pit (2)").transform.position = new UnityEngine.Vector3(0, 0, 798);
+                    GenericHelper.FindObjectEvenIfDisabled("5B - Secret Arena", "5B Nonstuff/Pit (3)").transform.position = new UnityEngine.Vector3(0, 0, 778);
 
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[7]);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("7 - 02IntroFountain"));
                     break;
 
                 case "Level 0-S":
 
-                    FindObjectEvenIfDisabled("FinalRoom SecretExit").gameObject.SetActive(false);
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[0]);
-                    FindObjectEvenIfDisabled("Hellgate Textless Variant", "DoorLeft").GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
-                    FindObjectEvenIfDisabled("Hellgate Textless Variant", "DoorRight").GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
-                    FindObjectEvenIfDisabled("0 - 0-S exit(Clone)", "closedoor").GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = FindObjectEvenIfDisabled("Hellgate Textless Variant", "Opener");
+                    GenericHelper.FindObjectEvenIfDisabled("FinalRoom SecretExit").gameObject.SetActive(false);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("0 - 0-S exit"));
+                    GenericHelper.FindObjectEvenIfDisabled("Hellgate Textless Variant", "DoorLeft").GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
+                    GenericHelper.FindObjectEvenIfDisabled("Hellgate Textless Variant", "DoorRight").GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
+                    GenericHelper.FindObjectEvenIfDisabled("0 - 0-S exit(Clone)", "closedoor").GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = GenericHelper.FindObjectEvenIfDisabled("Hellgate Textless Variant", "Opener");
 
 
 
@@ -305,45 +140,45 @@ namespace Ultrapit
                     if ((fun < 4 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
 
-                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
                     }
 
 
-                    FindObjectEvenIfDisabled("1 - First Field", "1 Stuff/Fountain").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("1 - First Field", "1 Stuff/Fountain").gameObject.SetActive(false);
 
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[1]);
-                    Logger.LogInfo(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)").name);
-                    Logger.LogInfo(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain").name);
-                    Logger.LogInfo(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/").name);
-                    Logger.LogInfo(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").name);
-                    Logger.LogInfo(FindObjectEvenIfDisabled("StatsManager").name);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("1 - Darker_Fountain"));
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)").name);
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain").name);
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/").name);
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").name);
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("StatsManager").name);
 
-                    Logger.LogInfo(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").GetComponent<ObjectActivator>().events);
+                    Logger.LogInfo(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").GetComponent<ObjectActivator>().events);
 
-                    FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").GetComponent<ObjectActivator>().events.onActivate.AddListener(FindObjectEvenIfDisabled("StatsManager").GetComponent<StatsManager>().StopTimer);
+                    GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/muzzles/muzzleflash (4)").GetComponent<ObjectActivator>().events.onActivate.AddListener(GenericHelper.FindObjectEvenIfDisabled("StatsManager").GetComponent<StatsManager>().StopTimer);
 
-                    FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").GetComponent<CoinActivated>().events.onActivate.AddListener(FindObjectEvenIfDisabled("FirstRoom", "Room/FinalDoor/DoorLeft").GetComponent<Door>().LockClose);
-                    FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").GetComponent<CoinActivated>().events.onActivate.AddListener(FindObjectEvenIfDisabled("FirstRoom", "Room/FinalDoor/DoorRight").GetComponent<Door>().LockClose);
-                    cache = FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "nopass");
-                    cache.GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = FindObjectEvenIfDisabled("LargeDoor", "OpenZone (1)");
-                    cache.GetComponent<ObjectActivator>().events.toDisActivateObjects[1] = FindObjectEvenIfDisabled("LargeDoor (12)", "OpenZone (1)");
-                    Fountain.transform.parent = FindObjectEvenIfDisabled("1 - First Field", "1 Stuff").transform;
-                    Logger.LogMessage(FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").name);
+                    GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").GetComponent<CoinActivated>().events.onActivate.AddListener(GenericHelper.FindObjectEvenIfDisabled("FirstRoom", "Room/FinalDoor/DoorLeft").GetComponent<Door>().LockClose);
+                    GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").GetComponent<CoinActivated>().events.onActivate.AddListener(GenericHelper.FindObjectEvenIfDisabled("FirstRoom", "Room/FinalDoor/DoorRight").GetComponent<Door>().LockClose);
+                    cache = GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "nopass");
+                    cache.GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = GenericHelper.FindObjectEvenIfDisabled("LargeDoor", "OpenZone (1)");
+                    cache.GetComponent<ObjectActivator>().events.toDisActivateObjects[1] = GenericHelper.FindObjectEvenIfDisabled("LargeDoor (12)", "OpenZone (1)");
+                    Fountain.transform.parent = GenericHelper.FindObjectEvenIfDisabled("1 - First Field", "1 Stuff").transform;
+                    Logger.LogMessage(GenericHelper.FindObjectEvenIfDisabled("1 - Darker_Fountain(Clone)", "fountain/Cylinder (1)").name);
 
                     break;
                 case "Level 1-S":
 
 
                     
-                    FindObjectEvenIfDisabled("5 - Finale", "FinalRoomSecretExit").gameObject.SetActive(false);
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[2]);
-                    FindObjectEvenIfDisabled("5 - Finale", "InteractiveScreenPuzzle5x5 (2)/Canvas/Background").GetComponent<PuzzleController>().toActivate[0] = FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "ActivateLimboDoor").gameObject;
+                    GenericHelper.FindObjectEvenIfDisabled("5 - Finale", "FinalRoomSecretExit").gameObject.SetActive(false);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("2 - Witless Fountain"));
+                    GenericHelper.FindObjectEvenIfDisabled("5 - Finale", "InteractiveScreenPuzzle5x5 (2)/Canvas/Background").GetComponent<PuzzleController>().toActivate[0] = GenericHelper.FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "ActivateLimboDoor").gameObject;
 
-                    FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "WaterReplace").gameObject.GetComponent<MeshRenderer>().material = badfix;
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "WaterReplace").gameObject.GetComponent<MeshRenderer>().material = badfix;
 
                     break;
 
@@ -353,15 +188,15 @@ namespace Ultrapit
                     if ((fun < 4 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
 
-                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
                         if (epmodeinternal)
                         {
-                            FindObjectEvenIfDisabled(Funobj.transform.name, "Level 2-1/standard").gameObject.SetActive(false);
-                            FindObjectEvenIfDisabled(Funobj.transform.name, "Level 2-1/eplmode").gameObject.SetActive(true);
+                            GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 2-1/standard").gameObject.SetActive(false);
+                            GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 2-1/eplmode").gameObject.SetActive(true);
                         }
                     }
 
@@ -371,57 +206,57 @@ namespace Ultrapit
                 case "Level 2-3":
 
 
-                    FindObjectEvenIfDisabled("Exteriors", "Arch (1)").gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance").gameObject.SetActive(false);
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[8]);
-                    cache = FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance/Pit");
+                    GenericHelper.FindObjectEvenIfDisabled("Exteriors", "Arch (1)").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance").gameObject.SetActive(false);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("8 - FountainLust"));
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance/Pit");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(5, -30, 800);
 
-                    cache = FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance/Pit (2)");
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(-15, -30, 800);
-                    FindObjectEvenIfDisabled("8 - FountainLust(Clone)", "addmintofix").GetComponent<ObjectActivatorStay>().toDisActivate[0] = (FindObjectEvenIfDisabled("MinosBackground"));
+                    GenericHelper.FindObjectEvenIfDisabled("8 - FountainLust(Clone)", "addmintofix").GetComponent<ObjectActivatorStay>().toDisActivate[0] = (GenericHelper.FindObjectEvenIfDisabled("MinosBackground"));
 
                     break;
                 case "Level 3-2":
                     if ((fun > 8 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
-                        FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff").transform.localPosition = new UnityEngine.Vector3(0, 0, 0);
-                        FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Cube").SetActive(false);
-                        FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Nonstuff/MusicActivator").SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff").transform.localPosition = new UnityEngine.Vector3(0, 0, 0);
+                        GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Cube").SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Nonstuff/MusicActivator").SetActive(false);
 
 
-                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl").GetComponent<MassAnimationReceiver>().realMass = FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Gabriel");
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl/KillYourOST").GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = FindObjectEvenIfDisabled("Music 1");
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl/KillYourOST").GetComponent<ObjectActivator>().events.toDisActivateObjects[1] = FindObjectEvenIfDisabled("Music 2");
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl").GetComponent<MassAnimationReceiver>().realMass = GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Gabriel");
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl/KillYourOST").GetComponent<ObjectActivator>().events.toDisActivateObjects[0] = GenericHelper.FindObjectEvenIfDisabled("Music 1");
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/FakeGabrielRouxl/KillYourOST").GetComponent<ObjectActivator>().events.toDisActivateObjects[1] = GenericHelper.FindObjectEvenIfDisabled("Music 2");
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/Cube").GetComponent<ObjectActivator>().events = FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Cube").GetComponent<ObjectActivator>().events;
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart").transform.parent = FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff").transform;
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/hold/MfixPutInGabe").GetComponent<ObjectActivator>().events.toActivateObjects[0] = FindObjectEvenIfDisabled("Music 3");
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/hold/MfixPutInGabe").transform.parent = FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Gabriel").transform;
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart/Cube").GetComponent<ObjectActivator>().events = GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Cube").GetComponent<ObjectActivator>().events;
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/heart").transform.parent = GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff").transform;
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/hold/MfixPutInGabe").GetComponent<ObjectActivator>().events.toActivateObjects[0] = GenericHelper.FindObjectEvenIfDisabled("Music 3");
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 3-2/hold/MfixPutInGabe").transform.parent = GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Stuff/Gabriel").transform;
 
                     }
                     break;
 
                 case "Level 4-2":
 
-                    FindObjectEvenIfDisabled("OOB Stuff").transform.position = FindObjectEvenIfDisabled("OOB Stuff").transform.position - new UnityEngine.Vector3(0, 550, 0);
+                    GenericHelper.FindObjectEvenIfDisabled("OOB Stuff").transform.position = GenericHelper.FindObjectEvenIfDisabled("OOB Stuff").transform.position - new UnityEngine.Vector3(0, 550, 0);
 
-                    FindObjectEvenIfDisabled("FakeMoon").GetComponent<SphereCollider>().enabled = false;
-                    FindObjectEvenIfDisabled("FakeMoon").GetComponent<MeshRenderer>().enabled = false;
-                    FindObjectEvenIfDisabled("FakeMoon", "Point Light/Spot Light").gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position = FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
-                    FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position = FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[12]);
-                    Fountain.transform.parent = FindObjectEvenIfDisabled("FakeMoon").transform;
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon").GetComponent<SphereCollider>().enabled = false;
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon").GetComponent<MeshRenderer>().enabled = false;
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "Point Light/Spot Light").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position = GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position = GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C - FountainGreed"));
+                    Fountain.transform.parent = GenericHelper.FindObjectEvenIfDisabled("FakeMoon").transform;
 
                     break;
 
@@ -430,29 +265,29 @@ namespace Ultrapit
                     if ((fun > 7 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
 
-                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
-                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
 
-                        FindObjectEvenIfDisabled("1 - First Chambers", "1 Nonstuff/Altar").gameObject.SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("1 - First Chambers", "1 Nonstuff/Altar").gameObject.SetActive(false);
 
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/patternphase1/soundenable").transform.parent = FindObjectEvenIfDisabled("1 - First Chambers", "1 Stuff/Torches/GreedTorch/OnLight").transform;
-                        cache = FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/SoundwaveObject");
-                        cache.transform.parent = FindObjectEvenIfDisabled("Player", "Agent").transform;
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/patternphase1/soundenable").transform.parent = GenericHelper.FindObjectEvenIfDisabled("1 - First Chambers", "1 Stuff/Torches/GreedTorch/OnLight").transform;
+                        cache = GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/SoundwaveObject");
+                        cache.transform.parent = GenericHelper.FindObjectEvenIfDisabled("Player", "Agent").transform;
                         cache.SetActive(false);
                         cache.transform.SetSiblingIndex(0);
-                        FindObjectEvenIfDisabled("0-S Check").gameObject.SetActive(false);
-                        FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/Altars").gameObject.SetActive(false);
-                        FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/Cube").gameObject.SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("0-S Check").gameObject.SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/Altars").gameObject.SetActive(false);
+                        GenericHelper.FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/Cube").gameObject.SetActive(false);
 
-                        //ItemPlaceZone redaltar = FindObjectEvenIfDisabled("7 - Generator Room", "Agent").GetComponents<ItemPlaceZone>()[2];
+                        //ItemPlaceZone redaltar = GenericHelper.FindObjectEvenIfDisabled("7 - Generator Room", "Agent").GetComponents<ItemPlaceZone>()[2];
 
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/button/Cube").GetComponent<ObjectActivator>().events.toActivateObjects[0] = FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/MusicStopper").gameObject;
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/button/Cube").GetComponent<ObjectActivator>().events.toActivateObjects[0] = GenericHelper.FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Altar/MusicStopper").gameObject;
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/button/Cube/delay").GetComponent<ObjectActivator>().events.toActivateObjects[0] = (FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Spinning Cylinder/Lights"));
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, "Level 4-3/button/Cube/delay").GetComponent<ObjectActivator>().events.toActivateObjects[0] = (GenericHelper.FindObjectEvenIfDisabled("7 - Generator Room", "7 Nonstuff/Spinning Cylinder/Lights"));
 
                     }
 
@@ -461,32 +296,32 @@ namespace Ultrapit
 
                 case "Level 4-S":
 
-                    FindObjectEvenIfDisabled("4 - Boulder Run", "4 Stuff/FinalRoom SecretExit").gameObject.SetActive(false);
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[4]);
-                    Fountain.transform.parent = FindObjectEvenIfDisabled("4 - Boulder Run").transform;
+                    GenericHelper.FindObjectEvenIfDisabled("4 - Boulder Run", "4 Stuff/FinalRoom SecretExit").gameObject.SetActive(false);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("4 - greedFountain"));
+                    Fountain.transform.parent = GenericHelper.FindObjectEvenIfDisabled("4 - Boulder Run").transform;
 
                     break;
 
                 case "Level 5-1":
                     if ((fun == 6 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
-                        FindObjectEvenIfDisabled("IntroParent", "Intro/Intro B - First Tunnel/Cube(Clone)").gameObject.SetActive(false);
-                        GameObject room_mysteryman = UnityEngine.Object.Instantiate(prefabs[6]);
-                        room_mysteryman.transform.parent = FindObjectEvenIfDisabled("IntroParent", "Intro/Intro B - First Tunnel").transform;
+                        GenericHelper.FindObjectEvenIfDisabled("IntroParent", "Intro/Intro B - First Tunnel/Cube(Clone)").gameObject.SetActive(false);
+                        GameObject room_mysteryman = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("6 - room_mysteryman"));
+                        room_mysteryman.transform.parent = GenericHelper.FindObjectEvenIfDisabled("IntroParent", "Intro/Intro B - First Tunnel").transform;
                         room_mysteryman.transform.localPosition = new UnityEngine.Vector3(-22.6f, 0f, -7.5f);
                     }
 
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[9]);
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("9 - doorFountain"));
 
 
-                    FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance").gameObject.SetActive(false);
 
-                    cache = FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance/Pit");
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance/Pit");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(5, -30, 800);
 
-                    cache = FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance/Pit (2)");
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(-15, -30, 800);
@@ -497,8 +332,9 @@ namespace Ultrapit
 
                 case "Level 5-S":
 
-                    FindObjectEvenIfDisabled("FinalRoom SecretExit").gameObject.SetActive(false);
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[3]);
+                    GenericHelper.FindObjectEvenIfDisabled("FinalRoom SecretExit").gameObject.SetActive(false);
+                    Logger.LogError(GenericHelper.FetchAsset("3- Fishing-Fountain"));
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("3- Fishing-Fountain"));
 
                     break;
 
@@ -508,27 +344,27 @@ namespace Ultrapit
                     if ((fun < 4 || OverrideFun == "Always_on") && OverrideFun != "Off")
                     {
 
-                        Funobj = UnityEngine.Object.Instantiate(prefabs[13]);
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
-                        FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                        GenericHelper.FindObjectEvenIfDisabled(Funobj.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
 
                     }
 
-                    FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance").gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 3, true).gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 4, true).gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 5, true).gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 6, true).gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[11]);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 3, true).gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 4, true).gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 5, true).gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret", 6, true).gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("B - ViolentEntrance"));
 
-                    cache = FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit");
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(15, -30, 800);
 
-                    cache = FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit (2)");
+                    cache = GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(-5, -30, 800);
@@ -542,36 +378,36 @@ namespace Ultrapit
 
 
 
-                    FindObjectEvenIfDisabled("Fake Exit").gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("7-S_Unpaintable", "Interior/Blackout").gameObject.SetActive(false);
-                    FindObjectEvenIfDisabled("7-S_Unpaintable", "Doorways/Door_009").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("Fake Exit").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("7-S_Unpaintable", "Interior/Blackout").gameObject.SetActive(false);
+                    GenericHelper.FindObjectEvenIfDisabled("7-S_Unpaintable", "Doorways/Door_009").gameObject.SetActive(false);
 
 
 
-                    Fountain = UnityEngine.Object.Instantiate(prefabs[5]);
-                    cache = FindObjectEvenIfDisabled("Fake Exit", "WasherPickup");
-                    cache.transform.parent = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "enable/washreplace").transform;
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("5 - fountainWash"));
+                    cache = GenericHelper.FindObjectEvenIfDisabled("Fake Exit", "WasherPickup");
+                    cache.transform.parent = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "enable/washreplace").transform;
                     cache.transform.localPosition = new UnityEngine.Vector3(0f, 0f, 0f);
                     cache.transform.rotation = UnityEngine.Quaternion.identity;
 
-                    FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "thumbsuptasque (1)").GetComponent<ObjectActivator>().events.onActivate.AddListener(FindObjectEvenIfDisabled("Checkpoints", "Checkpoint (2)").GetComponent<CheckPoint>().ReactivateCheckpoint);
-                    FindObjectEvenIfDisabled("Checkpoints", "Checkpoint (2)").GetComponent<CheckPoint>().toActivate = FindObjectEvenIfDisabled("5 - fountainWash(Clone)");
+                    GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "thumbsuptasque (1)").GetComponent<ObjectActivator>().events.onActivate.AddListener(GenericHelper.FindObjectEvenIfDisabled("Checkpoints", "Checkpoint (2)").GetComponent<CheckPoint>().ReactivateCheckpoint);
+                    GenericHelper.FindObjectEvenIfDisabled("Checkpoints", "Checkpoint (2)").GetComponent<CheckPoint>().toActivate = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)");
 
-                    cache = FindObjectEvenIfDisabled("Fake Exit", "VacuumPickup");
-                    cache.transform.parent = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "enable/vacreplace").transform;
+                    cache = GenericHelper.FindObjectEvenIfDisabled("Fake Exit", "VacuumPickup");
+                    cache.transform.parent = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "enable/vacreplace").transform;
                     cache.transform.localPosition = new UnityEngine.Vector3(0f, 0f, 0f);
                     cache.transform.rotation = UnityEngine.Quaternion.identity;
 
-                    cache = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "Swatches - parent/swatchLadder");
-                    cache.transform.parent = FindObjectEvenIfDisabled("Interactives", "MainHall/MainHall Stuff/Sliding Ladder/Ladder_Collision/Ladder").transform;
+                    cache = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "Swatches - parent/swatchLadder");
+                    cache.transform.parent = GenericHelper.FindObjectEvenIfDisabled("Interactives", "MainHall/MainHall Stuff/Sliding Ladder/Ladder_Collision/Ladder").transform;
                     cache.transform.localPosition = new UnityEngine.Vector3(0f, -0.8f, 21.35f);
 
-                    cache = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "Swatches - parent/swatchWalk");
-                    cache.transform.parent = FindObjectEvenIfDisabled("7-S_Unpaintable", "Interior/Library Chandelier").transform;
+                    cache = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "Swatches - parent/swatchWalk");
+                    cache.transform.parent = GenericHelper.FindObjectEvenIfDisabled("7-S_Unpaintable", "Interior/Library Chandelier").transform;
                     cache.transform.localPosition = new UnityEngine.Vector3(0f, -7.66f, 0f);
-                    FindObjectEvenIfDisabled("7-S_Paintable").GetComponent<BloodCheckerManager>().finalDoorOpener = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "DoorOpenerReplacement");
+                    GenericHelper.FindObjectEvenIfDisabled("7-S_Paintable").GetComponent<BloodCheckerManager>().finalDoorOpener = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "DoorOpenerReplacement");
 
-                    FindObjectEvenIfDisabled("Interactives", "MainHall/MainHall NonStuff/Altar (Blue Skull) Variant/Cube").GetComponent<ItemPlaceZone>().activateOnSuccess[0] = FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "3 Exit (2)/Open").gameObject;
+                    GenericHelper.FindObjectEvenIfDisabled("Interactives", "MainHall/MainHall NonStuff/Altar (Blue Skull) Variant/Cube").GetComponent<ItemPlaceZone>().activateOnSuccess[0] = GenericHelper.FindObjectEvenIfDisabled("5 - fountainWash(Clone)", "3 Exit (2)/Open").gameObject;
 
 
                     break;
@@ -584,8 +420,8 @@ namespace Ultrapit
                 {
 
 
-                    GameObject friend = UnityEngine.Object.Instantiate(prefabs[10]);
-                    FindObjectEvenIfDisabled(friend.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
+                    GameObject friend = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("A - OBJECT_FRIEND"));
+                    GenericHelper.FindObjectEvenIfDisabled(friend.transform.name, SceneHelper.CurrentScene).gameObject.SetActive(true);
 
                 }
             }
