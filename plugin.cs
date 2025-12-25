@@ -13,7 +13,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 
-namespace Ultrapit
+namespace Deltakill
 {
 
     [BepInPlugin("DarkFountains.draghtnim.ultrakill", "DarkFountains", "1.0")]
@@ -173,7 +173,7 @@ namespace Ultrapit
                 case "Level 1-S":
 
 
-                    
+
                     GenericHelper.FindObjectEvenIfDisabled("5 - Finale", "FinalRoomSecretExit").gameObject.SetActive(false);
                     Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("2 - Witless Fountain"));
                     GenericHelper.FindObjectEvenIfDisabled("5 - Finale", "InteractiveScreenPuzzle5x5 (2)/Canvas/Background").GetComponent<PuzzleController>().toActivate[0] = GenericHelper.FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "ActivateLimboDoor").gameObject;
@@ -213,12 +213,32 @@ namespace Ultrapit
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(5, -30, 800);
+                    cache.transform.GetChild(0).position = cache.transform.GetChild(0).position - new Vector3(0, 20, 0);
 
                     cache = GenericHelper.FindObjectEvenIfDisabled("2 - Sewer Arena", "2 Nonstuff/Secret Level Entrance/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(-15, -30, 800);
                     GenericHelper.FindObjectEvenIfDisabled("8 - FountainLust(Clone)", "addmintofix").GetComponent<ObjectActivatorStay>().toDisActivate[0] = (GenericHelper.FindObjectEvenIfDisabled("MinosBackground"));
+
+                    break;
+
+
+                case "Level 2-S":
+
+                    GameObject mask = GenericHelper.FindObjectEvenIfDisabled("Canvas", "PowerUpVignette/Panel/Aspect Ratio Mask/");
+                    Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("2-Sstuff"));
+
+
+                    //make this a for loop, otherwise it skips over
+                    foreach (Transform child in GenericHelper.FindObjectEvenIfDisabled("2-Sstuff(Clone)", "Canvas/AdditionalScreens/").transform)
+                    {
+                        child.parent = mask.transform;
+                        Logger.LogWarning("moved " + child.name);
+
+                    }
+
+
 
                     break;
                 case "Level 3-2":
@@ -229,7 +249,8 @@ namespace Ultrapit
                         GenericHelper.FindObjectEvenIfDisabled("4 - Heart Chamber", "4 Nonstuff/MusicActivator").SetActive(false);
 
 
-                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));
+                        Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));//.GetComponents<ObjectActivator>().First();
+;
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
@@ -254,6 +275,7 @@ namespace Ultrapit
                     GenericHelper.FindObjectEvenIfDisabled("FakeMoon").GetComponent<MeshRenderer>().enabled = false;
                     GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "Point Light/Spot Light").gameObject.SetActive(false);
                     GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position = GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
+                    GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.GetChild(0).gameObject.transform.position = GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit").transform.GetChild(0).gameObject.transform.position - new Vector3(0, 50, 0);
                     GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position = GenericHelper.FindObjectEvenIfDisabled("FakeMoon", "FinalRoom SecretEntrance/Pit (2)").transform.position - new UnityEngine.Vector3(0, 250, 0); ;
                     Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C - FountainGreed"));
                     Fountain.transform.parent = GenericHelper.FindObjectEvenIfDisabled("FakeMoon").transform;
@@ -320,6 +342,7 @@ namespace Ultrapit
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
                     cache.transform.position = new UnityEngine.Vector3(5, -30, 800);
+                    cache.transform.GetChild(0).position = cache.transform.GetChild(0).position - new Vector3(0, 20, 0);
 
                     cache = GenericHelper.FindObjectEvenIfDisabled("2 - Elevator", "2B Secret/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
@@ -362,12 +385,14 @@ namespace Ultrapit
                     cache = GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
-                    cache.transform.position = new UnityEngine.Vector3(15, -30, 800);
+                    cache.transform.position = new UnityEngine.Vector3(-5, -30, 800);
+
+                    cache.transform.GetChild(0).position = cache.transform.GetChild(0).position - new Vector3(0, 20, 0);
 
                     cache = GenericHelper.FindObjectEvenIfDisabled("2 - Garden Maze", "Secret/FinalRoom SecretEntrance/Pit (2)");
                     cache.gameObject.SetActive(true);
                     cache.transform.parent = null;
-                    cache.transform.position = new UnityEngine.Vector3(-5, -30, 800);
+                    cache.transform.position = new UnityEngine.Vector3(15, -30, 800);
 
 
 

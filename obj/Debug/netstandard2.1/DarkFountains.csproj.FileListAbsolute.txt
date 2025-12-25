@@ -89,6 +89,8 @@ C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\Dark
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.AssemblyInfo.cs
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.csproj.CoreCompileInputs.cache
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.sourcelink.json
-C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.csproj.CopyComplete
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.dll
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFountains.pdb
+C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\bin\Debug\netstandard2.1\Unity.InputSystem.dll
+C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\bin\Debug\netstandard2.1\Unity.InputSystem.ForUI.dll
+C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFoun.EAAC1DBF.Up2Date

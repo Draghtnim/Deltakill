@@ -17,14 +17,21 @@
           "PluginConfiguratorComponents": "1.0.0.0",
           "Unity.Addressables": "0.0.0.0",
           "Unity.Collections": "0.0.0.0",
+          "Unity.InputSystem": "1.7.0.0",
+          "Unity.InputSystem.ForUI": "0.0.0.0",
           "Unity.ResourceManager": "0.0.0.0",
           "Unity.TextMeshPro": "0.0.0.0",
           "UnityEngine.AssetBundleModule": "0.0.0.0",
           "UnityEngine.AudioModule": "0.0.0.0",
           "UnityEngine.CoreModule": "0.0.0.0",
           "UnityEngine": "0.0.0.0",
+          "UnityEngine.InputLegacyModule": "0.0.0.0",
+          "UnityEngine.InputModule": "0.0.0.0",
           "UnityEngine.ParticleSystemModule": "0.0.0.0",
-          "UnityEngine.PhysicsModule": "0.0.0.0"
+          "UnityEngine.PhysicsModule": "0.0.0.0",
+          "UnityEngine.UI": "1.0.0.0",
+          "UnityEngine.UIElementsModule": "0.0.0.0",
+          "UnityEngine.UIModule": "0.0.0.0"
         },
         "runtime": {
           "DarkFountains.dll": {}
@@ -94,6 +101,22 @@
           }
         }
       },
+      "Unity.InputSystem/1.7.0.0": {
+        "runtime": {
+          "Unity.InputSystem.dll": {
+            "assemblyVersion": "1.7.0.0",
+            "fileVersion": "1.7.0.0"
+          }
+        }
+      },
+      "Unity.InputSystem.ForUI/0.0.0.0": {
+        "runtime": {
+          "Unity.InputSystem.ForUI.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Unity.ResourceManager/0.0.0.0": {
         "runtime": {
           "Unity.ResourceManager.dll": {
@@ -142,6 +165,22 @@
           }
         }
       },
+      "UnityEngine.InputLegacyModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.InputLegacyModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.InputModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.InputModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "UnityEngine.ParticleSystemModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.ParticleSystemModule.dll": {
@@ -153,6 +192,30 @@
       "UnityEngine.PhysicsModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.PhysicsModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.UI/1.0.0.0": {
+        "runtime": {
+          "UnityEngine.UI.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.UIElementsModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UIElementsModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.UIModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UIModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -182,14 +245,6 @@
           }
         }
       },
-      "UnityEngine.UI/1.0.0.0": {
-        "runtime": {
-          "UnityEngine.UI.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
-      },
       "UnityEngine.AnimationModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AnimationModule.dll": {
@@ -209,14 +264,6 @@
       "UnityEngine.AIModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.AIModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.UIModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UIModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -270,14 +317,6 @@
           }
         }
       },
-      "UnityEngine.InputLegacyModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.InputLegacyModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "UnityEngine.JSONSerializeModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.JSONSerializeModule.dll": {
@@ -321,6 +360,30 @@
       "Unity.Collections.LowLevel.ILSupport/0.0.0.0": {
         "runtime": {
           "Unity.Collections.LowLevel.ILSupport.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.XRModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.XRModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.VRModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.VRModule.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "UnityEngine.UnityAnalyticsModule/0.0.0.0": {
+        "runtime": {
+          "UnityEngine.UnityAnalyticsModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -385,14 +448,6 @@
       "UnityEngine.UnityConnectModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.UnityConnectModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.UnityAnalyticsModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UnityAnalyticsModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -473,14 +528,6 @@
       "UnityEngine.VFXModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.VFXModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.VRModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.VRModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -598,14 +645,6 @@
           }
         }
       },
-      "UnityEngine.UIElementsModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.UIElementsModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "UnityEngine.VehiclesModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.VehiclesModule.dll": {
@@ -622,25 +661,9 @@
           }
         }
       },
-      "UnityEngine.XRModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.XRModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
       "UnityEngine.ARModule/0.0.0.0": {
         "runtime": {
           "UnityEngine.ARModule.dll": {
-            "assemblyVersion": "0.0.0.0",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "UnityEngine.InputModule/0.0.0.0": {
-        "runtime": {
-          "UnityEngine.InputModule.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -702,6 +725,16 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Unity.InputSystem/1.7.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Unity.InputSystem.ForUI/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "Unity.ResourceManager/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -732,12 +765,37 @@
       "serviceable": false,
       "sha512": ""
     },
+    "UnityEngine.InputLegacyModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.InputModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "UnityEngine.ParticleSystemModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
     },
     "UnityEngine.PhysicsModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.UI/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.UIElementsModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.UIModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -757,11 +815,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.UI/1.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.AnimationModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -773,11 +826,6 @@
       "sha512": ""
     },
     "UnityEngine.AIModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UIModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -812,11 +860,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.InputLegacyModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.JSONSerializeModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -843,6 +886,21 @@
       "sha512": ""
     },
     "Unity.Collections.LowLevel.ILSupport/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.XRModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.VRModule/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "UnityEngine.UnityAnalyticsModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -883,11 +941,6 @@
       "sha512": ""
     },
     "UnityEngine.UnityConnectModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.UnityAnalyticsModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -938,11 +991,6 @@
       "sha512": ""
     },
     "UnityEngine.VFXModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.VRModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""
@@ -1017,11 +1065,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.UIElementsModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.VehiclesModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1032,17 +1075,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "UnityEngine.XRModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
     "UnityEngine.ARModule/0.0.0.0": {
-      "type": "reference",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "UnityEngine.InputModule/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

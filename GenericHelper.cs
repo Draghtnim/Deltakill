@@ -9,7 +9,7 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
 
 
-namespace Ultrapit
+namespace Deltakill
 {
 
     public class GenericHelper : BaseUnityPlugin
