@@ -428,3 +428,11 @@ FodyWeavers.xsd
 *.msp
 /bin/Debug/netstandard2.1
 /bin/Debug/netstandard2.1
+obj/Debug/netstandard2.1/DarkFountains.pdb
+.vs/DarkFountains/v17/.suo
+.vs/DarkFountains/v17/DocumentLayout.backup.json
+obj/Debug/netstandard2.1/DarkFountains.AssemblyInfo.cs
+obj/Debug/netstandard2.1/DarkFountains.AssemblyInfoInputs.cache
+obj/Debug/netstandard2.1/DarkFountains.pdb
+/obj/Debug
+obj/Debug/netstandard2.1/DarkFountains.sourcelink.json

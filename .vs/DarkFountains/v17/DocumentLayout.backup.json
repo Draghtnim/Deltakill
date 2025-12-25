@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\visualstudio.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:visualstudio.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\textboxpitchperfect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:textboxpitchperfect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\faketime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,24 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "VisualStudio.gitignore",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\VisualStudio.gitignore",
               "RelativeDocumentMoniker": "VisualStudio.gitignore",
               "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\VisualStudio.gitignore",
               "RelativeToolTip": "VisualStudio.gitignore",
-              "ViewState": "AgIAAHMBAAAAAAAAAAAcwKwBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-12-25T16:21:09.194Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": ".gitattributes",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\.gitattributes",
               "RelativeDocumentMoniker": ".gitattributes",
@@ -89,7 +89,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TextBoxPitchPerfect.cs",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\TextBoxPitchPerfect.cs",
               "RelativeDocumentMoniker": "TextBoxPitchPerfect.cs",
