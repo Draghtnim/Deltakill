@@ -94,3 +94,4 @@ C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\Dark
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\bin\Debug\netstandard2.1\Unity.InputSystem.dll
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\bin\Debug\netstandard2.1\Unity.InputSystem.ForUI.dll
 C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\obj\Debug\netstandard2.1\DarkFoun.EAAC1DBF.Up2Date
+C:\Users\win11\OneDrive\Dokumenty\GitHub\Deltakill\bin\Debug\netstandard2.1\UltraFishing.dll

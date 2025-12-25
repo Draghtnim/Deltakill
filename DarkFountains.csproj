@@ -24,6 +24,9 @@
 		<Reference Include="PluginConfiguratorComponents">
 		  <HintPath>..\..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ULTRAKILL\profiles\rudeonly\BepInEx\plugins\EternalsTeam-PluginConfigurator\PluginConfigurator\PluginConfiguratorComponents.dll</HintPath>
 		</Reference>
+		<Reference Include="UltraFishing">
+		  <HintPath>..\..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ULTRAKILL\profiles\rudeonly\BepInEx\plugins\earthlingOnFire-UltraFishing\UltraFishing.dll</HintPath>
+		</Reference>
 		<Reference Include="Unity.Addressables">
 			<HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\Unity.Addressables.dll</HintPath>
 		</Reference>

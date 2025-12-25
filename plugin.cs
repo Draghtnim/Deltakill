@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Bootstrap;
 using HarmonyLib;
@@ -21,6 +22,7 @@ namespace Deltakill
 
     public class Plugin : BaseUnityPlugin
     {
+        public static string modDir;
         private Material badfix;
         private PluginConfigurator config;
         public static bool IsCustomLevel = false;
@@ -35,7 +37,11 @@ namespace Deltakill
         public static Plugin Instance => _instance;
 
 
+        private void Start()
+        {
 
+
+        }
 
         enum FunEnum
         {
@@ -46,7 +52,8 @@ namespace Deltakill
 
         private void Awake()
         {
-            
+            string modPath = Assembly.GetExecutingAssembly().Location.ToString();
+            modDir = Path.GetDirectoryName(modPath);
             badfix = GenericHelper.Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
 
             GenericHelper.DictonaryFill();
@@ -87,6 +94,7 @@ namespace Deltakill
             };
 
             //bundlepit = AssetBundle.LoadFromMemory(Properties.Resources.Crusher1);
+            UltraFishingCompat.RegisterExtraFish();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
