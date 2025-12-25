@@ -17,6 +17,8 @@ namespace Deltakill
 {
 
     [BepInPlugin("DarkFountains.draghtnim.ultrakill", "DarkFountains", "1.0")]
+    [BepInDependency("com.earthlingOnFire.UltraFishing", BepInDependency.DependencyFlags.SoftDependency)]
+
     public class Plugin : BaseUnityPlugin
     {
         private Material badfix;
