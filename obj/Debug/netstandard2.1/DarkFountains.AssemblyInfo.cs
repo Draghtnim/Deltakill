@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e15f759383c70c731164c1f1e5933dc912e9b39c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9a62729077e8ae2f5356e57a1c0311d97ddae454")]
 [assembly: System.Reflection.AssemblyProductAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
