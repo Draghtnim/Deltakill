@@ -426,3 +426,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/bin/Debug/netstandard2.1
+/bin/Debug/netstandard2.1
