@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using BepInEx;
-using BepInEx.Bootstrap;
+using BepInEx.Logging;
 using HarmonyLib;
 using PluginConfig.API;
 using PluginConfig.API.Fields;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 
@@ -22,6 +18,9 @@ namespace Deltakill
 
     public class Plugin : BaseUnityPlugin
     {
+
+        public static ManualLogSource logger;
+
         public static string modDir;
         private Material badfix;
         private PluginConfigurator config;
@@ -37,11 +36,6 @@ namespace Deltakill
         public static Plugin Instance => _instance;
 
 
-        private void Start()
-        {
-
-
-        }
 
         enum FunEnum
         {
@@ -50,15 +44,24 @@ namespace Deltakill
             Always_on
         }
 
-        private void Awake()
+        private void Start()
         {
+
+
             string modPath = Assembly.GetExecutingAssembly().Location.ToString();
             modDir = Path.GetDirectoryName(modPath);
-            badfix = GenericHelper.Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
+            UltraFishingCompat.RegisterExtraFish();
 
+        }
+
+        private void Awake()
+        {
+
+            badfix = GenericHelper.Fetch<Material>("Assets/Materials/Liquids/Limbo Water LowPriority V2Arena.mat");
             GenericHelper.DictonaryFill();
 
             string assemblyLocation = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            logger = Logger;
 
 
             config = PluginConfigurator.Create("deltaKILL", "CONFIG_DATA_DELTA");
@@ -94,7 +97,6 @@ namespace Deltakill
             };
 
             //bundlepit = AssetBundle.LoadFromMemory(Properties.Resources.Crusher1);
-            UltraFishingCompat.RegisterExtraFish();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -188,8 +190,6 @@ namespace Deltakill
                     Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("2 - Witless Fountain"));
                     GenericHelper.FindObjectEvenIfDisabled("5 - Finale", "InteractiveScreenPuzzle5x5 (2)/Canvas/Background").GetComponent<PuzzleController>().toActivate[0] = GenericHelper.FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "ActivateLimboDoor").gameObject;
 
-                    GenericHelper.FindObjectEvenIfDisabled("2 - Witless Fountain(Clone)", "WaterReplace").gameObject.GetComponent<MeshRenderer>().material = badfix;
-
                     break;
 
                 case "Level 2-1":
@@ -234,7 +234,7 @@ namespace Deltakill
                     break;
 
 
-                case "Level 2-S":
+                case "Level 2-SDONOTTRIGGER":
 
                     GameObject mask = GenericHelper.FindObjectEvenIfDisabled("Canvas", "PowerUpVignette/Panel/Aspect Ratio Mask/");
                     Fountain = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("2-Sstuff"));
@@ -260,7 +260,7 @@ namespace Deltakill
 
 
                         Funobj = UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("C1 - Fun"));//.GetComponents<ObjectActivator>().First();
-;
+                        ;
                         Logger.LogWarning(string.Concat("Importing: ", Funobj.gameObject.name));
 
 
@@ -446,6 +446,10 @@ namespace Deltakill
 
 
                     break;
+                case "CreditsMuseum2":
+                    GenericHelper.FindObjectEvenIfDisabled("__Room_FrontDesk_1", "Marble stand/DevPlushie (Hakita)/").SetActive(false);
+                    UnityEngine.Object.Instantiate(GenericHelper.FetchAsset("Pluey_0"));
+                    break;
             }
 
             //FRIEND
@@ -478,8 +482,8 @@ namespace Deltakill
 
 
 
-    [HarmonyPatch] // <--- this is **ESSENTIAL** for this to work 
-    public class PlayerAnimationsPatch
+    [HarmonyPatch] 
+    public class GeneralDeltakillPatches
     {
 
 
@@ -501,6 +505,36 @@ namespace Deltakill
 
             }
 
+        }
+
+
+        [HarmonyPatch(typeof(HudMessageReceiver), "SendHudMessage")]
+        [HarmonyPrefix]
+
+        public static bool SendHudMessage(HudMessageReceiver __instance, string newmessage, string newinput = "", string newmessage2 = "", int delay = 0, bool silent = false, bool inputBeenProcessed = false, bool automaticTimer = true)
+        {
+            if (__instance.transform.parent.GetComponent<Animator> == null) {
+                
+            }
+            __instance.message = "<color=white>" + newmessage;
+            __instance.input = newinput;
+            __instance.message2 = newmessage2;
+            __instance.noSound = silent;
+            __instance.timer = automaticTimer;
+            __instance.inputPreProcessed = inputBeenProcessed;
+            __instance.Invoke("ShowHudMessage", (float)delay);
+            return false;
+        }
+
+
+        [HarmonyPatch(typeof(HudMessageReceiver), "SendHudMessage")]
+        [HarmonyPrefix]
+
+        public static void Start(HudMessageReceiver __instance)
+        {
+            RuntimeAnimatorController bundleanim = Plugin.PitBundle.LoadAsset("MessageHud", typeof(RuntimeAnimatorController) ) as RuntimeAnimatorController;
+            Animator Anim = __instance.gameObject.AddComponent<Animator>();
+            Anim.runtimeAnimatorController = bundleanim;
         }
 
 

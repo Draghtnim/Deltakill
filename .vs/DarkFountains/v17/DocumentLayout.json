@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\plugin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:plugin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\darkfountains.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:darkfountains.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\ultrafishingcompat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:ultrafishingcompat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\generichelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:generichelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\darkfountains.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:darkfountains.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\plugin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:plugin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\textboxpitchperfect.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +23,36 @@
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:faketime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\darkfountains.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:darkfountains.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\generichelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:generichelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\license||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:license||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\ignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:ignore.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:readme.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\visualstudio.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:visualstudio.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|c:\\users\\win11\\onedrive\\dokumenty\\github\\deltakill\\.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{261DAA12-7A97-4E86-8A74-EEF019793E01}|DarkFountains.csproj|solutionrelative:.gitattributes||{3B902123-F8A7-4915-9F01-361F908088D0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
@@ -52,14 +72,26 @@
               "RelativeDocumentMoniker": "UltraFishingCompat.cs",
               "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\UltraFishingCompat.cs",
               "RelativeToolTip": "UltraFishingCompat.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADEAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T16:38:52.058Z",
+              "WhenOpened": "2025-12-25T18:00:06.698Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
+              "Title": "Ignore.gitignore",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\Ignore.gitignore",
+              "RelativeDocumentMoniker": "Ignore.gitignore",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\Ignore.gitignore",
+              "RelativeToolTip": "Ignore.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-25T17:52:25.744Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "VisualStudio.gitignore",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\VisualStudio.gitignore",
               "RelativeDocumentMoniker": "VisualStudio.gitignore",
@@ -71,33 +103,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
               "Title": "FakeTime.cs",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\FakeTime.cs",
               "RelativeDocumentMoniker": "FakeTime.cs",
               "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\FakeTime.cs",
               "RelativeToolTip": "FakeTime.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-16T17:02:18.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-16T17:02:18.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TextBoxPitchPerfect.cs",
-              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\TextBoxPitchPerfect.cs",
-              "RelativeDocumentMoniker": "TextBoxPitchPerfect.cs",
-              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\TextBoxPitchPerfect.cs",
-              "RelativeToolTip": "TextBoxPitchPerfect.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAAcwJkAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T19:43:36.166Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LICENSE",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\LICENSE",
               "RelativeDocumentMoniker": "LICENSE",
@@ -105,47 +123,107 @@
               "RelativeToolTip": "LICENSE",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-10-14T14:13:56.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T14:13:56.054Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DarkFountains.csproj",
-              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
-              "RelativeDocumentMoniker": "DarkFountains.csproj",
-              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
-              "RelativeToolTip": "DarkFountains.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-10T18:31:24.888Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "plugin.cs",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\plugin.cs",
               "RelativeDocumentMoniker": "plugin.cs",
               "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\plugin.cs",
               "RelativeToolTip": "plugin.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwDcAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAowMEBAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-09-14T17:54:11.558Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "GenericHelper.cs",
               "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\GenericHelper.cs",
               "RelativeDocumentMoniker": "GenericHelper.cs",
               "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\GenericHelper.cs",
               "RelativeToolTip": "GenericHelper.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAowFQAAAAgAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAmwD0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-14T09:58:30.72Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-25T17:52:23.937Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TextBoxPitchPerfect.cs",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\TextBoxPitchPerfect.cs",
+              "RelativeDocumentMoniker": "TextBoxPitchPerfect.cs",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\TextBoxPitchPerfect.cs",
+              "RelativeToolTip": "TextBoxPitchPerfect.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAqwH0AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T19:43:36.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DarkFountains.csproj",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
+              "RelativeDocumentMoniker": "DarkFountains.csproj",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
+              "RelativeToolTip": "DarkFountains.csproj",
+              "ViewState": "AgIAACMAAAAAAAAAAAAtwEEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-25T17:53:40.427Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\README.md",
+              "RelativeDocumentMoniker": "README.md",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\README.md",
+              "RelativeToolTip": "README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-12-25T17:52:27.413Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DarkFountains",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
+              "RelativeDocumentMoniker": "DarkFountains.csproj",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\DarkFountains.csproj",
+              "RelativeToolTip": "DarkFountains.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-12-25T17:54:42.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": ".gitattributes",
+              "DocumentMoniker": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\.gitattributes",
+              "RelativeDocumentMoniker": ".gitattributes",
+              "ToolTip": "C:\\Users\\win11\\OneDrive\\Dokumenty\\GitHub\\Deltakill\\.gitattributes",
+              "RelativeToolTip": ".gitattributes",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-25T17:52:21.011Z"
             }
           ]
         }

@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using BepInEx;
-using BepInEx.Logging;
-using GameConsole.pcon;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
@@ -32,13 +29,14 @@ namespace Deltakill
 
             foreach (var pref in Plugin.prefabs)
             {
-                if (BundleDictionary.ContainsKey(pref.name)){
+                if (BundleDictionary.ContainsKey(pref.name))
+                {
                     int i = 0;
-                    for (i = 0; BundleDictionary.ContainsKey(pref.name+i); i++)
+                    for (i = 0; BundleDictionary.ContainsKey(pref.name + i); i++)
                     {
 
                     }
-                    BundleDictionary.Add(pref.name+i, pref);
+                    BundleDictionary.Add(pref.name + i, pref);
 
                 }
                 else
