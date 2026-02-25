@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: System.Runtime.CompilerServices.IgnoresAccessChecksToAttribute("Assembly-CSharp")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54433e2c9ac424c4a5e27b31dc5512b06200194a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+10a3c3abdfcd7bdbc366f6be1f5c970382683786")]
 [assembly: System.Reflection.AssemblyProductAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DarkFountains")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

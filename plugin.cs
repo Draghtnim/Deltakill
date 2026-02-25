@@ -487,9 +487,9 @@ namespace Deltakill
     {
 
 
-        [HarmonyPatch(typeof(PlayerAnimations), "PlayFootstepClip")]
+        [HarmonyPatch(typeof(PlayerFootsteps), "PlayFootstepClip")]
         [HarmonyPostfix]
-        public static void FootStepPatch(PlayerAnimations __instance)
+        public static void FootStepPatch(PlayerFootsteps __instance)
         {
 
             if (__instance.transform.GetChild(0).name == "SoundwaveObject")
@@ -510,10 +510,10 @@ namespace Deltakill
 
         [HarmonyPatch(typeof(HudMessageReceiver), "SendHudMessage")]
         [HarmonyPrefix]
-
-        public static bool SendHudMessage(HudMessageReceiver __instance, string newmessage, string newinput = "", string newmessage2 = "", int delay = 0, bool silent = false, bool inputBeenProcessed = false, bool automaticTimer = true)
+        public static bool SendHudMessage2(HudMessageReceiver __instance, string newmessage, string newinput = "", string newmessage2 = "", int delay = 0, bool silent = false, bool inputBeenProcessed = false, bool automaticTimer = true)
         {
-            if (__instance.transform.parent.GetComponent<Animator> == null) {
+
+            /*if (__instance.transform.parent.GetComponent<Animator> == null) {
                 
             }
             __instance.message = "<color=white>" + newmessage;
@@ -522,7 +522,25 @@ namespace Deltakill
             __instance.noSound = silent;
             __instance.timer = automaticTimer;
             __instance.inputPreProcessed = inputBeenProcessed;
+            __instance.Invoke("ShowHudMessage", (float)delay);*/
+
+            __instance.message = "<color=white>" + (string.IsNullOrEmpty(newinput) ? newmessage : (newmessage + "{0}" + newmessage2));
+            string[] array;
+            if (!string.IsNullOrEmpty(newinput))
+            {
+                (array = new string[1])[0] = newinput;
+            }
+            else
+            {
+                array = null;
+            }
+            __instance.inputs = array;
+            __instance.noSound = silent;
+            __instance.timer = automaticTimer;
+            __instance.inputPreProcessed = inputBeenProcessed;
             __instance.Invoke("ShowHudMessage", (float)delay);
+
+
             return false;
         }
 

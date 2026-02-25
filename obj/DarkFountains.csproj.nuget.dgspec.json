@@ -51,6 +51,18 @@
       "frameworks": {
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "BepInEx.AssemblyPublicizer": {
+              "target": "Package",
+              "version": "[0.4.3, )"
+            },
+            "Krafs.Publicizer": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

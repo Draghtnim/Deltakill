@@ -15,11 +15,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Reference Include="0Harmony">
+		<Reference Include="0Harmony" >
 		  <HintPath>..\..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ULTRAKILL\profiles\rudeonly\BepInEx\core\0Harmony.dll</HintPath>
 		</Reference>
-		<Reference Include="Assembly-CSharp">
-		  <HintPath>..\..\..\..\..\..\libs\Assembly-CSharp.dll</HintPath>
+		<Reference Include="Assembly-CSharp" Publicize="true">
+			<HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\ULTRAKILL\ULTRAKILL_Data\Managed\Assembly-CSharp.dll</HintPath>
 		</Reference>
 		<Reference Include="BepInEx">
 			<HintPath>..\..\..\..\AppData\Roaming\Thunderstore Mod Manager\DataFolder\ULTRAKILL\profiles\Default\BepInEx\core\BepInEx.dll</HintPath>
@@ -105,6 +105,15 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="BepInEx.AssemblyPublicizer" Version="0.4.3" />
+		<PackageReference Include="Krafs.Publicizer" Version="2.2.1">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<Publicize Include="Assembly-CSharp" />
 	</ItemGroup>
 
 </Project>

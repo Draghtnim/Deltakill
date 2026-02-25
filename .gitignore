@@ -451,3 +451,4 @@ obj/Debug/netstandard2.1/DarkFountains.sourcelink.json
 .vs/DarkFountains/CopilotIndices/17.14.1530.14912/CodeChunks.db
 .vs/DarkFountains/v17/DocumentLayout.backup.json
 /.vs
+/obj/Debug
